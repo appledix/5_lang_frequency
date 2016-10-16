@@ -1,7 +1,6 @@
 import argparse
 import collections
 import re
-import os
 
 
 def load_data(filepath):
@@ -18,12 +17,6 @@ def get_most_frequent_words(text):
     number_of_words = 10
     return collections.Counter(words).most_common(number_of_words)
 
-def filepath_is_valid(filepath):
-    if os.path.isfile(filepath) and filepath.endswith(".txt"):
-        return True
-    else:
-        return False
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -31,10 +24,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     filepath = args.filepath
     
-    if filepath_is_valid(filepath):
+    try:
         data = load_data(filepath)
+    except Exception:
+        print("Некорректные входные данные!")
+    else:
         most_frequent_words = get_most_frequent_words(data)
         print("Десять наиболее часто используемых в данном " + \
             "тексте слов в порядке убывания:\n", most_frequent_words)
-    else:
-        print("Некорректные входные данные!")
