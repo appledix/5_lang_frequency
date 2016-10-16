@@ -10,8 +10,8 @@ def load_data(filepath):
     return data
 
 def get_words_from_text(text):
-    words = re.findall(r'\w+', text)
-    return [word.lower() for word in words]
+    words = re.findall(r'\w+', text.lower())
+    return words
 
 def get_most_frequent_words(text):
     words = get_words_from_text(text)
