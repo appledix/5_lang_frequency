@@ -2,7 +2,6 @@ import argparse
 import collections
 import re
 
-
 def load_data(filepath):
     with open(filepath, 'r') as text_file:
         data = text_file.read()
@@ -16,8 +15,7 @@ def get_most_frequent_words(text):
     number_of_words = 10
     return collections.Counter(words).most_common(number_of_words)
 
-
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("filepath", help="Адрес текстового файла.", type=str)
     args = parser.parse_args()
@@ -31,3 +29,6 @@ if __name__ == '__main__':
         most_frequent_words = get_most_frequent_words(data)
         print("Десять наиболее часто используемых в данном " + \
             "тексте слов в порядке убывания:\n", most_frequent_words)
+
+if __name__ == '__main__':
+    main()
